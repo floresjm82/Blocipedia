@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'welcome/sign_up'
+
   devise_for :users
+
+  resources :users, only: [:show]
+
+  root 'welcome#sign_up'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
