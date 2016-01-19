@@ -1,5 +1,13 @@
 
 <div class="text-center">
-My Wikis
+  <h1>My Wikis</h1>
+
+  <br>
+  <%= render @user.wikis %>
+  <br>
+
+  <% link_to "New Wiki", new_wiki_path, class: 'btn btn-default' %>
+
+
 </div>
 

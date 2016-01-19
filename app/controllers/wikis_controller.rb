@@ -30,12 +30,13 @@ class WikisController < ApplicationController
 	  # @wiki.public = params[:wiki][:public]
 	  # @wiki.user = current_user
 
-	  @wiki = current_user.wiki.new(wiki_params)
+	  @wiki = current_user.wikis.new(wiki_params)
 
 	  if @wiki.save
 	  	flash[:notice] = "Wiki saved!"
 	  else
 	  	flash[:error] = "Error... the Wiki was NOT saved!"
+	  end
 
 	  redirect_to current_user
 
@@ -78,6 +79,14 @@ class WikisController < ApplicationController
 	  end
 
 	end
+
+    private
+
+    def wiki_params
+    	params.require(:wiki).permit(:title, :body, :public)
+    end
+
+
 
 end
 
