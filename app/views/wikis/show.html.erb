@@ -5,7 +5,8 @@
 <div class="row">
 
   <div class="col-md-3">
-    <p>Blocipedia</p>
+    <p><%= link_to "Blocipedia", wikis_path %></p>
+    <p><%= link_to "My Wikis", user_path(current_user) %></p>
     <p>About Blocipedia</p>
     <p>Help</p>
     <p>Contact Page</p>
@@ -14,8 +15,8 @@
 
   <div class="col-md-7">
 	<div class="text-center">
-		<h1>@wiki.title</h1>
-		<h4>@wiki.body</h4>
+		<h1><%= @wiki.title %></h1>
+		<h4><%= @wiki.body %></h4>
 	</div>
   </div>
 
