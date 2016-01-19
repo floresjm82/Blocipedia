@@ -19,11 +19,11 @@
   </div>
 
   <div class="col-md-7">
-  	<%= @wikis.each do | wiki | %>
+  	<% @wikis.each do | wiki | %>
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <% link_to wiki.title, wiki %>
+            <%= link_to wiki.title, wiki %>
           </h4>
         </div>
       </div>
@@ -32,7 +32,7 @@
   
   <% if user_signed_in? %>
     <div class="col-md-2">
-      <% link_to "New Wiki", new_wiki_path, class: 'btn btn-default' %>
+      <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-default' %>
     </div>
   <% end %>
 

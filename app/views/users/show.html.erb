@@ -3,10 +3,18 @@
   <h1>My Wikis</h1>
 
   <br>
-  <%= render @user.wikis %>
+  <table class="table">
+    <tr>
+      <% current_user.wikis.each do |wiki| %>
+	    <td><%= link_to wiki.title, wiki %></td>
+	  <% end %>
+    </tr>
+  </table>
+  <br>
+  <br>
   <br>
 
-  <% link_to "New Wiki", new_wiki_path, class: 'btn btn-default' %>
+  <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-default' %>
 
 
 </div>
