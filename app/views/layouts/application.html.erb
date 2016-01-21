@@ -20,10 +20,18 @@
       <% end %>
 
     </div>
-    <br>
-    <br>
-
-<%= yield %>
+    <% if user_signed_in? %>
+      <div class="row top-row">
+        <div class="col-md-3">
+          <p><%= link_to "Blocipedia", wikis_path %></p>
+          <p><%= link_to "My Wikis", user_path(current_user) %></p>
+          <p>About Blocipedia</p>
+          <p>Help</p>
+          <p>Contact Page</p>
+        </div>
+    <% end %>
+        <%= yield %>
+      </div>
 
   </div>
   

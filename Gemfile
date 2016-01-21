@@ -58,6 +58,8 @@ gem 'pundit', '~> 1.1.0'
 
 gem 'faker', '~> 1.6.1'
 
+gem 'stripe', '~> 1.33.0'
+
 
 
 

@@ -1,0 +1,6 @@
+
+#ENV Variable without values
+ SENDGRID_PASSWORD:
+ SENDGRID_USERNAME:
+ stripe_publishable_key: 
+ stripe_secrety_key: 
