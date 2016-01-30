@@ -52,8 +52,6 @@ class ChargesController < ApplicationController
 		 
 		   flash[:notice] = "#{current_user.name}, your account has now been downgraded."
 		   redirect_to user_path(current_user)
-		 
-
 
 
 	 end

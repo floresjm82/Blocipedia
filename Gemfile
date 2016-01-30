@@ -60,6 +60,8 @@ gem 'faker', '~> 1.6.1'
 
 gem 'stripe', '~> 1.33.0'
 
+gem 'redcarpet', '~> 3.3.4'
+
 
 
 
