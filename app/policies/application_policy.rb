@@ -14,9 +14,11 @@ class ApplicationPolicy
   end
 
   def create?
+    user.present?
   end
 
   def new?
+    user.present?
   end
 
   def update?
@@ -24,7 +26,7 @@ class ApplicationPolicy
   end
 
   def edit?
-    update?
+    user.present?
   end
 
   def destroy?

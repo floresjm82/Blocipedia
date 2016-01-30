@@ -4,13 +4,20 @@ class WikisController < ApplicationController
 
 	def index
 
-	  @wikis = Wiki.all 
+	  @wikis = Wiki.visible_to(current_user) 
 
 	end
 
 	def show
 
 	  @wiki = Wiki.find(params[:id])
+
+
+
+	  unless  !@wiki.private || @wiki.private.nil? || current_user.premium? || current_user.admin?
+	  	flash[:alert] = "This wiki is private.  Please upgrade your account to Premium to see this wiki article."
+	  	redirect_to welcome_sign_up_path
+	  end
 
 	end
 
