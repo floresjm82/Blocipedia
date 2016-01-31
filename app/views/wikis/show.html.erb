@@ -1,8 +1,8 @@
   <div class="col-md-7">
-	<div class="text-center">
-		<h1><%= @wiki.title %></h1>
+  	<div class="text-center">
+  		<h1><%= @wiki.title %></h1>
+    </div>
 		<h4><%= markdown(@wiki.body) %></h4>
-	</div>
   </div>
 
   <% if user_signed_in? %>
