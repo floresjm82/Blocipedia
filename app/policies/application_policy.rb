@@ -6,33 +6,6 @@ class ApplicationPolicy
     @wiki = wiki
   end
 
-  def index?
-  end
-
-  def show?
-    scope.where(:id => wiki.id).exists?
-  end
-
-  def create?
-    user.present?
-  end
-
-  def new?
-    user.present?
-  end
-
-  def update?
-    user.present?
-  end
-
-  def edit?
-    user.present?
-  end
-
-  def destroy?
-    user.admin?
-  end
-
   def scope
     Pundit.policy_scope!(user, wiki.class)
   end
