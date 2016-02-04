@@ -2,9 +2,22 @@
 <div class="text-center">
   <h1>My Wikis</h1>
   <p>Role - <%= current_user.role %></p>
+  
+  <% if current_user.standard? %> 
+    <p><%= link_to "Upgrade Account", charges_path, class: 'btn btn-default shadow' %><p>
+  <% end %>
+
+  <% if current_user.premium? %>
+    <p><%= link_to "Downgrade Account", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'If you downgrade your account your private wikis will become public.  Are you sure you want to downgrade your account?'} %>
+  <% end %>
   <br>
+
+</div>
   <table class="table">
     <tr>
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
       <% current_user.wikis.each do |wiki| %>
 	    <td><%= link_to wiki.title, wiki %></td>
 	  <% end %>
@@ -15,7 +28,7 @@
   <br>
 
   <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-default' %>
+  <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
 
 
-</div>
 

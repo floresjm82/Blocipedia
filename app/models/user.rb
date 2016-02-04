@@ -12,6 +12,10 @@ def defaults
 	self.role ||= :standard	#self.role = :standard if self.role.nil?
 end
 
+  def downgrading_wikis!
+	wikis.update_all(private: false)
+  end
+
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :lockable,

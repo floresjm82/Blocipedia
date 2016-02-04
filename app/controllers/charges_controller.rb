@@ -27,7 +27,6 @@ class ChargesController < ApplicationController
 		   )
 
 		   current_user.premium!
-		   current_user.save
 		 
 		   flash[:notice] = "Thank you #{current_user.name}! Your payment was processed!"
 		   redirect_to user_path(current_user) # or wherever
@@ -44,11 +43,8 @@ class ChargesController < ApplicationController
 
 	 def destroy
 
-		   customer = Stripe::Customer.find(email: current_user.email)
-
 		   current_user.standard!
 		   current_user.downgrading_wikis!
-		   current_user.save
 		 
 		   flash[:notice] = "#{current_user.name}, your account has now been downgraded."
 		   redirect_to user_path(current_user)
