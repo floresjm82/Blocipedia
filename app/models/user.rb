@@ -13,7 +13,7 @@ def defaults
 end
 
   def downgrading_wikis!
-	wikis.update_all(private: false)
+	  wikis.update_all(private: false)
   end
 
   # Include default devise modules. Others available are:
