@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
-has_many :wikis, dependent: :destroy
+has_many :wikis, through: :collaborators
+has_many :collaborators
 
 before_save do 
 	self.email = email.downcase
@@ -12,9 +13,20 @@ def defaults
 	self.role ||= :standard	#self.role = :standard if self.role.nil?
 end
 
-  def downgrading_wikis!
-	  wikis.update_all(private: false)
-  end
+def downgrading_wikis!
+  wikis.update_all(private: false)
+end
+
+delegate :wikis, to: :collaborators
+
+def collaborators
+  Collaborator.where(user_id: id)
+end
+
+# def wikis
+#   # Wiki.where( id: collaborators.pluck(:wiki_id))
+#   collaborators.wikis
+# end
 
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable

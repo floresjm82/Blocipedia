@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :wikis
 
-  resources :charges, only: [:new, :create]
+  resources :charges, only: [:new, :create, :destroy]
 
   root 'wikis#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -4,7 +4,7 @@ class WikisController < ApplicationController
 
 	def index
 
-	  @wikis = WikiPolicy::Scope.new(current_user, Wiki).resolve
+	  @wikis = policy_scope(Wiki)
 
 	end
 
