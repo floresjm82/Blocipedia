@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   
-has_many :wikis, through: :collaborators
-has_many :collaborators
+has_many :wikis, dependent: :nullify
 
 before_save do 
 	self.email = email.downcase
@@ -17,10 +16,16 @@ def downgrading_wikis!
   wikis.update_all(private: false)
 end
 
-delegate :wikis, to: :collaborators
-
 def collaborators
   Collaborator.where(user_id: id)
+end
+
+def collaborated_wikis
+	collaborators.map(&:wiki)
+end
+
+def all_wikis
+	wikis + collaborated_wikis
 end
 
 # def wikis

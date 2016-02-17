@@ -1,18 +1,12 @@
 class Wiki < ActiveRecord::Base
+  
+  belongs_to :user
   has_many :collaborators
-  # belongs_to :user
   has_many :users, through: :collaborators
 
-  delegate :users, to: :collaborators
+  scope :publicly_viewable, -> {where(private: false || nil)}
 
-  def collaborators
-  	collaborator.where(wiki_id: id)
+  def public?
+    !private
   end
-
-  # def users
-  # 	# User.where( id: collaborators.pluck(:user_id))
- 	# collaborators.users
-  # end
-
-
 end
