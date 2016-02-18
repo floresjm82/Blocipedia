@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-9">
   <%= form_for @wiki do |f| %>
     <% if @wiki.errors.any? %>
 
@@ -23,13 +23,36 @@
       <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: "Enter Wiki article body" %>
     <% end %>
 
-<%# this does not save %>
     <% if current_user.admin? || current_user.premium? %>
+      
       <div class="form-group">
         <%= f.label :private, class: 'checkbox' do %>
           <%= f.check_box :private %> Private Wiki
         <% end %>
       </div>
+    
+      <br>
+        <b>Add Collaborators to Wiki</b>
+      <br>
+      <br>
+        <table class="table">
+       
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Give Access</th>
+        </tr>
+        <% @users = User.all %>
+        <% @users.each do |u| %>
+          <tr>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td>Blank</td>
+          </tr>
+        <% end %>
+
+      </table>
+
     <% end %>
 
     <div class="form-group">
