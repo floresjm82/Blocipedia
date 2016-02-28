@@ -16,12 +16,19 @@
   </div>
     <table class="table">
       <tr>
-        <th>Title</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Wiki Title</th>
+        <th>Edit Wiki</th>
+        <% if current_user.admin? %>
+          <th>Delete Wiki</th>
+        <% end %>
       </tr>
-        <% current_user.wikis.each do |wiki| %>
-          <td><%= link_to wiki.title, wiki %></td>
+      <% current_user.wikis.each do |wiki| %>
+      <tr>
+        <td><%= link_to wiki.title, wiki %></td>
+        <td><%= link_to "Edit", edit_wiki_path %></td>
+        <if current_user.admin? %>
+          <td><%= link_to "Delete", @wiki, method: :delete, data: {confirm: 'Are you sure you want to delete this wiki?'} %></td>
+      <tr>
         <% end %>
     </table>
     <br>
