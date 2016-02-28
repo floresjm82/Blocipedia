@@ -1,0 +1,33 @@
+<div class="col-md-7">
+
+  <br>
+  <% if current_user.admin? || current_user.premium? %>
+  <h4 class="text-center">Add Collaborators to <br><%= @wiki.title %></h4>
+  <br>
+  <br>
+
+  <table class="table">
+
+   <tr>
+     <th>Name</th>
+     <th>Email</th>
+     <th>Give Access</th>
+   </tr>
+
+   <% @users.each do |u| %>
+     <% if u == current_user %>
+     <% else %>
+     <tr>
+       <td><%= u.name %></td>
+       <td><%= u.email %></td>
+       <% if @wiki.users.include?(u) %>
+         <td><%= link_to "", wiki_collaborator_path(@wiki, @wiki.collaborator_for(u)), method: :delete, class: 'glyphicon glyphicon-check' %></td>
+       <% else %>
+  		   <td><%= link_to "", wiki_collaborators_path(@wiki, user_id: u.id ), method: :post, class: 'glyphicon glyphicon-unchecked' %></td>
+       <% end %>
+     </tr>
+     <% end %>
+   <% end %>
+  <% end %>
+  </table>
+</div>

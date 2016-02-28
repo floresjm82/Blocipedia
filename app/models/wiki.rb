@@ -9,4 +9,9 @@ class Wiki < ActiveRecord::Base
   def public?
     !private
   end
+
+  def collaborator_for(user)
+  	collaborators.where(user: user).first
+  end
+
 end

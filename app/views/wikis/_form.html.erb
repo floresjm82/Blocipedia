@@ -30,28 +30,6 @@
           <%= f.check_box :private %> Private Wiki
         <% end %>
       </div>
-    
-      <br>
-        <b>Add Collaborators to Wiki</b>
-      <br>
-      <br>
-        <table class="table">
-       
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Give Access</th>
-        </tr>
-        <% @users = User.all %>
-        <% @users.each do |u| %>
-          <tr>
-            <td><%= u.name %></td>
-            <td><%= u.email %></td>
-            <td>Blank</td>
-          </tr>
-        <% end %>
-
-      </table>
 
     <% end %>
 
@@ -61,3 +39,5 @@
 
   <% end %>
 </div>
+
+<%= link_to "Manage Collaborators", wiki_collaborators_path(@wiki), class: "btn btn-info" %>
